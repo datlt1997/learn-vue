@@ -21,13 +21,11 @@ const routes = [
     path: "/transactions",
     name: "transaction-route",
     component: TransactionPage,
-    children: [
-      {
-        path: ":id",
-        name: "transaction-detail-route",
-        component: TransactionDetail,
-      },
-    ],
+  },
+  {
+    path: "/transactions/:id",
+    name: "transaction-detail-route",
+    component: TransactionDetail,
   },
   {
     path: "/ts",
