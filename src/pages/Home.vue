@@ -12,7 +12,16 @@
 import { ref, reactive, computed, watch, watchEffect } from "vue";
 export default {
   name: "HomePage",
-  setup() {
+  props: {
+    theme: {
+      type: String,
+      required: false,
+      default: "light",
+    },
+  },
+  setup(props, context) {
+    console.log(props.theme);
+    console.log(context);
     const keyword = ref("");
     const arraySearchs = reactive([
       "hi",
