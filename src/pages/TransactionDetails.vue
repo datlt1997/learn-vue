@@ -6,20 +6,22 @@
     <h3>Price: {{ transaction.price }}</h3>
   </div>
   <div v-else>Loading Transaction {{ $route.params.id }}...</div>
+  {{ transactionFiltered }}
 </template>
 
 <script>
 export default {
   name: "TransactionDetails",
-  data() {
-    return {
-      transaction: null,
-    };
+  computed: {
+    transaction() {
+      return this.$store.state.transaction;
+    },
+    transactionFiltered() {
+      return this.$store.getters.transactionsFiltered;
+    },
   },
   created() {
-    fetch("http://localhost:3000/transactions/" + this.$route.params.id)
-      .then((response) => response.json())
-      .then((data) => (this.transaction = data));
+    this.$store.dispatch("fetchTransaction", { id: this.$route.params.id });
   },
 };
 </script>
